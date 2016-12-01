@@ -1,6 +1,6 @@
-# type-analyze [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
+# typling
 
-> Statically analyze types through comments
+> Type analysis using comments.
 
 ```js
 // foo : Number -> Number
@@ -9,46 +9,40 @@ function foo (x) {
 }
 
 foo('Hello')
-// TypeError: foo('Hello') doesnt match Number -> Number
+// TypeError: Expected first parameter String to be Number.
+// TypeError: Expected return value String to be Number.
 ```
-
-This module is a work in progress:
-
- - [x] Loads function type signature
- - [x] Checks literal types on function calls
- - [ ] Wildcards in type signature using `*`
- - [ ] Infers types of expressions (in functions and identifiers)
- - [ ] Loads identifier type signature
- - [ ] Checks identifier types
- - [ ] Proper support for scopes
 
 ## Installation
 
 ```sh
-$ npm install --save type-analyze
+$ npm install --save typling
 ```
 
 ## Usage
 
-### `analyze(source, options)` -> `errors`
+### `typling(source, options)`
 
-Analyze `source` with `options`.
+Analyze types of `source` and return a report.
 
 ```js
-var errors = analyze(`
-// foo : Number -> Number
-function foo (x) { return x + 1 }  
+var report = typling(`
+  // foo : Number -> Number
+  function foo (x) { return x + 1 }  
 
-foo('Hello')
-`)
+  foo('Hello')`)
 
-console.error(errors)
-// [ TypeError { ... } ]
+if (report.length)
+  console.error(report)
+  // [ TypeError { ... },
+  //   TypeError { ... } ]
 ```
 
-### 'errors'
+#### Parameters
 
-An array of `TypeError` objects.
+  - `source` (`String`): Some code to analyze for types.
+  - `options` (`Object`): Options for typling.
+    - TODO: Get options
 
 ## License
 
@@ -56,6 +50,6 @@ MIT © [Jamen Marz](https://git.io/jamen)
 
 ---
 
-[![version](https://img.shields.io/npm/v/type-analyze.svg?style=flat-square)][package] [![travis](https://img.shields.io/travis/jamen/type-analyze.svg?style=flat-square)](https://travis-ci.org/jamen/type-analyze) [![downloads](https://img.shields.io/npm/dt/type-analyze.svg?style=flat-square)][package] [![license](https://img.shields.io/npm/l/express.svg?style=flat-square)][package] [![follow](https://img.shields.io/github/followers/jamen.svg?style=social&label=Follow)](https://github.com/jamen)
+[![version](https://img.shields.io/npm/v/typling.svg?style=flat-square)][package] [![travis](https://img.shields.io/travis/jamen/typling.svg?style=flat-square)](https://travis-ci.org/jamen/typling) [![downloads](https://img.shields.io/npm/dt/typling.svg?style=flat-square)][package] [![license](https://img.shields.io/npm/l/express.svg?style=flat-square)][package] [![follow](https://img.shields.io/github/followers/jamen.svg?style=social&label=Follow)](https://github.com/jamen)
 
-[package]: https://npmjs.org/package/type-analyze
+[package]: https://npmjs.org/package/typling

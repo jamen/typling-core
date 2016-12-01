@@ -3,14 +3,14 @@ var walk = require('acorn/dist/walk')
 var escodegen = require('escodegen')
 var uuid = require('uuid')
 
-module.exports = analyze
+module.exports = typling
 
 var IS_SIGNATURE = /^.+:[^:]+$/
 
 /**
  * Analyze type for mismatch
  */
-function analyze (source, options) {
+function typling (source, options) {
   // Parse with comments:
   var comments = [], tokens = []
   var ast = acorn.parse(source, { ranges: true, onComment: comments, onToken: tokens })

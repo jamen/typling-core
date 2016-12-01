@@ -1,12 +1,12 @@
 {
-  "name": "type-analyze",
-  "description": "Statically analyze types through comments",
+  "name": "typling",
+  "description": "Type analysis using comments.",
   "version": "0.0.0",
-  "homepage": "https://github.com/jamen/type-analyze",
+  "homepage": "https://github.com/jamen/typling",
   "author": "Jamen Marz (https://git.io/jamen)",
-  "repository": "jamen/type-analyze",
+  "repository": "jamen/typling",
   "bugs": {
-    "url": "https://github.com/jamen/type-analyze/issues"
+    "url": "https://github.com/jamen/typling/issues"
   },
   "license": "MIT",
   "engines": {
@@ -20,7 +20,7 @@
   },
   "keywords": [
     "jamen",
-    "type-analyze",
+    "typling",
     "type",
     "typejs"
   ],
