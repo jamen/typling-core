@@ -14,13 +14,13 @@ foo('Hello')
 
 This module is a work in progress:
 
- - [x]: Loads function type signature
- - [x]: Checks literal types on function calls
- - [ ]: Wildcards in type signature using `*`
- - [ ]: Infers types of expressions (in functions and identifiers)
- - [ ]: Loads identifier type signature
- - [ ]: Checks identifier types
- - [ ]: Proper support for scopes
+ - [x] Loads function type signature
+ - [x] Checks literal types on function calls
+ - [ ] Wildcards in type signature using `*`
+ - [ ] Infers types of expressions (in functions and identifiers)
+ - [ ] Loads identifier type signature
+ - [ ] Checks identifier types
+ - [ ] Proper support for scopes
 
 ## Installation
 
