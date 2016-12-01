@@ -13,7 +13,8 @@
     "node": ">=4"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "lib"
   ],
   "scripts": {
     "test": "node test"
@@ -29,6 +30,8 @@
   },
   "dependencies": {
     "escodegen": "^1.8.1",
+    "object-assign": "^4.1.0",
+    "ordinal-numbers": "^1.0.1",
     "uuid": "^3.0.1"
   }
 }

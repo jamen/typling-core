@@ -9,8 +9,8 @@ function foo (x) {
 }
 
 foo('Hello')
-// TypeError: Expected first parameter String to be Number.
-// TypeError: Expected return value String to be Number.
+// TypeError: First parameter String should be Number
+// TypeError: Return value String should be Number
 ```
 
 **Warning:** Not ready for production use.
@@ -25,7 +25,7 @@ $ npm install --save typling
 
 ### `typling(source, options)`
 
-Analyze types of `source` and return a report.
+Analyze types of `source` and returns a report.
 
 #### Examples
 
