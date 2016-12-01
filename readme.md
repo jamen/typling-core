@@ -13,6 +13,8 @@ foo('Hello')
 // TypeError: Expected return value String to be Number.
 ```
 
+**Warning:** Not ready for production use.
+
 ## Installation
 
 ```sh
