@@ -1,0 +1,34 @@
+{
+  "name": "type-analyze",
+  "description": "Statically analyze types through comments",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jamen/type-analyze",
+  "author": "Jamen Marz (https://git.io/jamen)",
+  "repository": "jamen/type-analyze",
+  "bugs": {
+    "url": "https://github.com/jamen/type-analyze/issues"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=4"
+  },
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "test": "node test"
+  },
+  "keywords": [
+    "jamen",
+    "type-analyze",
+    "type",
+    "typejs"
+  ],
+  "devDependencies": {
+    "acorn": "^4.0.3"
+  },
+  "dependencies": {
+    "escodegen": "^1.8.1",
+    "uuid": "^3.0.1"
+  }
+}
