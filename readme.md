@@ -27,6 +27,18 @@ $ npm install --save typling
 
 Analyze types of `source` and return a report.
 
+#### Parameters
+
+  - `source` (`String`): Some code to analyze for types.
+  - `options` (`Object`): Options for typling.
+    - TODO: Get options
+
+#### Returns
+
+An array of `TypeError` or `SyntaxError` objects if any occurred, otherwise empty.
+
+#### Examples
+
 ```js
 var report = typling(`
   // foo : Number -> Number
@@ -39,12 +51,6 @@ if (report.length)
   // [ TypeError { ... },
   //   TypeError { ... } ]
 ```
-
-#### Parameters
-
-  - `source` (`String`): Some code to analyze for types.
-  - `options` (`Object`): Options for typling.
-    - TODO: Get options
 
 ## License
 
