@@ -9,7 +9,7 @@ function foo (x) {
 }
 
 foo('Hello')
-// TypeError: First parameter String should be Number
+// TypeError: 1st parameter String should be Number
 // TypeError: Return value String should be Number
 ```
 
