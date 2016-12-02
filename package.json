@@ -1,7 +1,7 @@
 {
   "name": "typling",
   "description": "Type analysis using comments.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/jamen/typling",
   "author": "Jamen Marz (https://git.io/jamen)",
   "repository": "jamen/typling",
