@@ -43,7 +43,7 @@ if (report.length)
 
   - `source` (`String`): Some code to analyze for types.
   - `options` (`Object`): Options for typling.
-    - TODO: Get options
+    - `presigned` (`Array`): An array of `FunctionDeclaration`-like nodes for preloading signatures.
 
 #### Returns
 
