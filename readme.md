@@ -3,7 +3,7 @@
 > Type analysis using comments.
 
 ```js
-// Number, Number : Number
+// Number, Number -> Number
 function foo (x, y) {
   return x + y
 }
@@ -28,7 +28,7 @@ Analyze types of `source` and returns a report.
 
 ```js
 var report = typling(`
-  // Number : Number
+  // Number -> Number
   function foo (x) { return x + 1 }  
 
   foo('Hello')`)
