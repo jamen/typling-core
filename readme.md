@@ -3,17 +3,14 @@
 > Type analysis using comments.
 
 ```js
-// foo : Number -> Number
-function foo (x) {
-  return x + 1
+// Number, Number : Number
+function foo (x, y) {
+  return x + y
 }
 
-foo('Hello')
-// TypeError: 1st parameter String should be Number
-// TypeError: Return value String should be Number
+foo(1, 'two')
+// TypeError: 2nd parameter String should be Number
 ```
-
-**Warning:** Not ready for production use.
 
 ## Installation
 
@@ -31,7 +28,7 @@ Analyze types of `source` and returns a report.
 
 ```js
 var report = typling(`
-  // foo : Number -> Number
+  // Number : Number
   function foo (x) { return x + 1 }  
 
   foo('Hello')`)
