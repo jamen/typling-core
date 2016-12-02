@@ -49,6 +49,8 @@ if (report.length)
 
 An array of `TypeError` or `SyntaxError` objects if any occurred, otherwise empty.
 
+The array has a property `.signed` where you can reuse the signatures.
+
 ## License
 
 MIT © [Jamen Marz](https://git.io/jamen)
