@@ -35,8 +35,7 @@ var report = typling(`
 
 if (report.length)
   console.error(report)
-  // [ TypeError { ... },
-  //   TypeError { ... } ]
+  // [ TypeError { ... } ]
 ```
 
 #### Parameters
