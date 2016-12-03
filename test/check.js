@@ -14,13 +14,13 @@ var source =
   'bar("foo", foo(1, 2)); bar("bar", foo(1, "foo"))\n' +
   'bar("foo", 123); bar(123, "foo")\n'
 
-function shared (t, node) {
-  var report = typling.check(node)
-  t.same(report, [])
-}
-
-test('esprima checks', function (t) {
-  var node = esprima.parse(source, { attachComment: true, loc: true })
-
-  shared(t, node)
-})
+// function shared (t, node) {
+//   var report = typling.check(node)
+//   t.same(report, [])
+// }
+//
+// test('esprima checks', function (t) {
+//   var node = esprima.parse(source, { attachComment: true, loc: true })
+//
+//   shared(t, node)
+// })
