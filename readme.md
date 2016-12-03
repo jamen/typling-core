@@ -1,6 +1,6 @@
 # typling-ast
 
-> Creating and verifying types on Esprima-style ASTs 
+> Create and verify typling types on Esprima-style ASTs
 
 ```js
 var esprima = require('esprima')
@@ -14,9 +14,10 @@ var node = esprima.parse(`
 
 var types = typling.create(node)
 var report = typling.verify(node, types)
+// [ TypeError { ... } ]
 ```
 
-**Warning:** Requires comments to be attached to the nodes with `attachComment: true` or similar.
+**Warning:** Requires comments to be attached to the nodes with `attachComment: true` or similar
 
 ## Installation
 
@@ -28,23 +29,23 @@ $ npm install --save typling-ast
 
 ### `typling.check(node, [types])`
 
-Analyze a node for types and then verify the calls.
+Analyze a node for types and then verify the calls
 
 ### `typling.create(node, [types])`
 
-Get an array of types from the node.  If a signature came from the AST, it will have a `.target` property on it.
+Get an array of types from the node.  If a signature came from the AST, it will have a `.target` property on it
 
 ### `typling.verify(node, types)`
 
-Verify calls against the provided types.  Note this does not analyze signatures in the source.  See `typling.check` for that.
+Verify calls against the provided types.  Note this does not analyze signatures in the source.  See `typling.check` for that
 
 ### `typling.infer(node, [types])`
 
-Attempt to infer a node's type.  Types help with inferring `CallExpression` return values.
+Attempt to infer a node's type.  Types help with inferring `CallExpression` return values
 
 ### `typling.query(node, types)`
 
-Query a type from a `types` array given a `node`.
+Query a type from a `types` array given a `node`
 
 ## License
 
