@@ -1,12 +1,12 @@
 {
-  "name": "es-typling",
-  "description": "Analyze Esprima-style ASTs for signatures and type errors.",
+  "name": "typling-ast",
+  "description": "Creating and verifying types on Esprima-style ASTs ",
   "version": "0.0.0",
-  "homepage": "https://github.com/jamen/es-typling",
+  "homepage": "https://github.com/jamen/typling-ast",
   "author": "Jamen Marz (https://git.io/jamen)",
-  "repository": "jamen/es-typling",
+  "repository": "jamen/typling-ast",
   "bugs": {
-    "url": "https://github.com/jamen/es-typling/issues"
+    "url": "https://github.com/jamen/typling-ast/issues"
   },
   "license": "MIT",
   "engines": {
@@ -20,7 +20,8 @@
     "test": "node test"
   },
   "keywords": [
-    "es-typling",
+    "typling",
+    "typling-ast",
     "jamen"
   ],
   "devDependencies": {

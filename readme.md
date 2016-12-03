@@ -1,10 +1,10 @@
-# es-typling
+# typling-ast
 
-> Analyze Esprima-style ASTs for signatures and type errors.
+> Creating and verifying types on Esprima-style ASTs 
 
 ```js
 var esprima = require('esprima')
-var typling = require('es-typling')
+var typling = require('typling-ast')
 
 var node = esprima.parse(`
   // Number, Number -> Number
@@ -12,8 +12,8 @@ var node = esprima.parse(`
   foo(123, 'hello world')`,
   { attachComment: true })
 
-var signatures = typling.signatures(node)
-var report = typling.check(node, { signatures })
+var types = typling.create(node)
+var report = typling.verify(node, types)
 ```
 
 **Warning:** Requires comments to be attached to the nodes with `attachComment: true` or similar.
@@ -21,26 +21,30 @@ var report = typling.check(node, { signatures })
 ## Installation
 
 ```sh
-$ npm install --save es-typling
+$ npm install --save typling-ast
 ```
 
 ## Usage
 
-### `typling.signatures(node, [options])`
+### `typling.check(node, [types])`
 
-Create a map of nodes to signatures.
+Analyze a node for types and then verify the calls.
 
-### `typling.check(node, [options])`
+### `typling.create(node, [types])`
 
-Check node with `options.signatures` (exported from `typling.signatures`).
+Get an array of types from the node.  If a signature came from the AST, it will have a `.target` property on it.
 
-### `typling.inferType(node, signatures)`
+### `typling.verify(node, types)`
 
-Infer the type of node
+Verify calls against the provided types.  Note this does not analyze signatures in the source.  See `typling.check` for that.
 
-### `typling.nodeMap([map])`
+### `typling.infer(node, [types])`
 
-Create a node map, returned by `typling.signatures`
+Attempt to infer a node's type.  Types help with inferring `CallExpression` return values.
+
+### `typling.query(node, types)`
+
+Query a type from a `types` array given a `node`.
 
 ## License
 
@@ -48,6 +52,6 @@ MIT © [Jamen Marz](https://git.io/jamen)
 
 ---
 
-[![version](https://img.shields.io/npm/v/es-typling.svg?style=flat-square)][package] [![travis](https://img.shields.io/travis/jamen/es-typling.svg?style=flat-square)](https://travis-ci.org/jamen/es-typling) [![downloads](https://img.shields.io/npm/dt/es-typling.svg?style=flat-square)][package] [![license](https://img.shields.io/npm/l/express.svg?style=flat-square)][package] [![follow](https://img.shields.io/github/followers/jamen.svg?style=social&label=Follow)](https://github.com/jamen)
+[![version](https://img.shields.io/npm/v/typling-ast.svg?style=flat-square)][package] [![travis](https://img.shields.io/travis/jamen/typling-ast.svg?style=flat-square)](https://travis-ci.org/jamen/typling-ast) [![downloads](https://img.shields.io/npm/dt/typling-ast.svg?style=flat-square)][package] [![license](https://img.shields.io/npm/l/express.svg?style=flat-square)][package] [![follow](https://img.shields.io/github/followers/jamen.svg?style=social&label=Follow)](https://github.com/jamen)
 
-[package]: https://npmjs.org/package/es-typling
+[package]: https://npmjs.org/package/typling-ast

@@ -1,4 +1,5 @@
 exports.check = require('./lib/check')
-exports.nodeMap = require('./lib/node-map')
-exports.inferType = require('./lib/infer-type')
-exports.signatures = require('./lib/signatures')
+exports.create = require('./lib/create')
+exports.verify = require('./lib/verify')
+exports.infer = require('./lib/infer')
+exports.query = require('./lib/query')
