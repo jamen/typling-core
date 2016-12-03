@@ -27,17 +27,40 @@ $ npm install --save typling-ast
 
 ## Usage
 
-### `typling.check(node, [types])`
+### `typling.check(node, [pretypes])`
 
-Analyze a node for types and then verify the calls
+Check tree of nodes for types then type errors.  Returns an array of `TypeError`, otherwise empty.
 
-### `typling.create(node, [types])`
+```js
+var node = esprima.parse(`
+  // Number, Number -> Number
+  function foo (x, y) { return x + y }
+  foo(1, 'two')`)
 
-Get an array of types from the node.  If a signature came from the AST, it will have a `.target` property on it
+typling.check(node)
+// [ { [TypeError: 2nd parameter String should be Number] ... } ]
+```
 
-### `typling.verify(node, types)`
+### `typling.create(node)`
 
-Verify calls against the provided types.  Note this does not analyze signatures in the source.  See `typling.check` for that
+Create an array of types from a tree of Esprima-style nodes.  These types have a `.target` property pointing to the node they come from.
+
+```js
+var types = typling.create(node)
+// [ [['Number'], 'Number', target: FunctionDeclaration { ... }]
+//   [['String', 'Number'], 'String'], target: ProgramModule { ... }]
+```
+
+### `typling.verify(types, node)`
+
+Verify calls in node tree against types.
+
+```js
+typling.verify(types, node)
+// [ TypeError { ... },
+//   TypeError { ... },
+//   TypeError { ... } ]
+```
 
 ### `typling.util`
 
