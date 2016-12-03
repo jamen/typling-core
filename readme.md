@@ -39,13 +39,14 @@ Get an array of types from the node.  If a signature came from the AST, it will 
 
 Verify calls against the provided types.  Note this does not analyze signatures in the source.  See `typling.check` for that
 
-### `typling.infer(node, [types])`
+### `typling.util`
 
-Attempt to infer a node's type.  Types help with inferring `CallExpression` return values
+Small functions for handling Esprima-style ASTs and our `types` array.  You can read [their source](lib/util) to find out more
 
-### `typling.query(node, types)`
-
-Query a type from a `types` array given a `node`
+ - `util.error`: Create friendly, location-aware errors in short ways
+ - `util.infer`: Attempt to infer a node's type, optionally give some signatures
+ - `util.walk`: Takes various types of nodes, and appends their children into an array
+ - `util.query`: Map nodes to types
 
 ## License
 
