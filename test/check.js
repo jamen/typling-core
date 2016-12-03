@@ -1,9 +1,6 @@
 var test = require('tape')
 var typling = require('../')
 var esprima = require('esprima')
-var espree = require('espree')
-var babylon = require('babylon')
-var acorn = require('acorn')
 
 var source =
   '// Number, Number -> Number\n' +
