@@ -2,7 +2,7 @@
 
 > Create and verify comment types on Esprima-style ASTs
 
-**Notice:** See [`typling-cli`](https://npmjs.com/typling-cli) if you want a tool instead of a library.
+**Notice:** See [`typling-cli`](https://www.npmjs.com/package/typling-cli) if you want a tool instead of a library.  This is the back-end to other typling tools.
 
 ```js
 var esprima = require('esprima')
@@ -20,7 +20,13 @@ var report = typling.verify(node, types)
 // [ TypeError { ... } ]
 ```
 
-Requires comments to be attached to the nodes with `attachComment: true` or similar
+(Requires comments to be attached to the nodes with `attachComment: true` or similar)
+
+Typling takes Esprima-style ASTs (See [ESTree](https://github.com/estree/estree)) can do 3 things of your choosing:
+
+ - `create`: Scans nodes for signatures (e.g. `// Number -> String`) and returns an array of types that point back to the node they came from.
+ - `verify`: Verify some types (probably from `create`) against a node tree, returning an array of errors to handle.
+ - `check`: Shorcut for `create` then `verify` on the same node.  Making an AST type checker basically
 
 ## Installation
 
@@ -30,7 +36,7 @@ $ npm install --save typling
 
 ## Usage
 
-### `typling.check(node, [pretypes])`
+### `typling.check(node, [types])`
 
 Check tree of nodes for types then type errors.  Returns an array of `TypeError`, otherwise empty.
 
@@ -43,6 +49,8 @@ var node = esprima.parse(`
 typling.check(node)
 // [ { [TypeError: 2nd parameter String should be Number] ... } ]
 ```
+
+Optionally add some additional types with the second parameter.
 
 ### `typling.create(node)`
 
