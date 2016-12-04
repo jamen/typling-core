@@ -1,12 +1,12 @@
 {
-  "name": "typling",
-  "description": "Create and verify comment types on Esprima-style ASTs",
+  "name": "typling-core",
+  "description": "Create and verify typlings on Esprima-style nodes",
   "version": "0.0.0",
-  "homepage": "https://github.com/jamen/typling",
+  "homepage": "https://github.com/jamen/typling-core",
   "author": "Jamen Marz (https://git.io/jamen)",
-  "repository": "jamen/typling",
+  "repository": "jamen/typling-core",
   "bugs": {
-    "url": "https://github.com/jamen/typling/issues"
+    "url": "https://github.com/jamen/typling-core/issues"
   },
   "license": "MIT",
   "engines": {
@@ -21,12 +21,13 @@
   },
   "keywords": [
     "typling",
-    "jamen",
+    "typling-core",
     "esprima",
     "estree",
     "static",
     "type",
-    "analysis"
+    "analysis",
+    "jamen",
   ],
   "devDependencies": {
     "esprima": "^3.1.2",
