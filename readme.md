@@ -24,7 +24,7 @@ var report = typling.verify(node, types)
 
 Typling takes Esprima-style ASTs (See [ESTree](https://github.com/estree/estree)) can do 3 things of your choosing:
 
- - `create`: Scans nodes for signatures (e.g. `// Number -> String`) and returns an array of types that point back to the node they came from.
+ - `create`: Parses node comment signatures (e.g. `// String -> String`) into an array of types that point back to their nodes.
  - `verify`: Verify some types (probably from `create`) against a node tree, returning an array of errors to handle.
  - `check`: Shorcut for `create` then `verify` on the same node.  Making an AST type checker basically
 
