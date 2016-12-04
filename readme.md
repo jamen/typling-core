@@ -1,28 +1,31 @@
-# typling-ast
+# typling
 
-> Create and verify typling types on Esprima-style ASTs
+> Create and verify comment types on Esprima-style ASTs
+
+**Notice:** See [`typling-cli`](https://npmjs.com/typling-cli) if you want a tool instead of a library.
 
 ```js
 var esprima = require('esprima')
-var typling = require('typling-ast')
+var typling = require('typling')
 
-var node = esprima.parse(`
-  // Number, Number -> Number
-  function foo (x, y) { return x + y }
-  foo(123, 'hello world')`,
-  { attachComment: true })
+var node = esprima.parse(
+  `// Number, Number -> Number
+   function foo (x, y) { return x + y }
+   foo(123, 'hello world')`,
+   { attachComment: true }
+ )
 
 var types = typling.create(node)
 var report = typling.verify(node, types)
 // [ TypeError { ... } ]
 ```
 
-**Warning:** Requires comments to be attached to the nodes with `attachComment: true` or similar
+Requires comments to be attached to the nodes with `attachComment: true` or similar
 
 ## Installation
 
 ```sh
-$ npm install --save typling-ast
+$ npm install --save typling
 ```
 
 ## Usage
@@ -77,6 +80,6 @@ MIT © [Jamen Marz](https://git.io/jamen)
 
 ---
 
-[![version](https://img.shields.io/npm/v/typling-ast.svg?style=flat-square)][package] [![travis](https://img.shields.io/travis/jamen/typling-ast.svg?style=flat-square)](https://travis-ci.org/jamen/typling-ast) [![downloads](https://img.shields.io/npm/dt/typling-ast.svg?style=flat-square)][package] [![license](https://img.shields.io/npm/l/express.svg?style=flat-square)][package] [![follow](https://img.shields.io/github/followers/jamen.svg?style=social&label=Follow)](https://github.com/jamen)
+[![version](https://img.shields.io/npm/v/typling.svg?style=flat-square)][package] [![travis](https://img.shields.io/travis/jamen/typling.svg?style=flat-square)](https://travis-ci.org/jamen/typling) [![downloads](https://img.shields.io/npm/dt/typling.svg?style=flat-square)][package] [![license](https://img.shields.io/npm/l/express.svg?style=flat-square)][package] [![follow](https://img.shields.io/github/followers/jamen.svg?style=social&label=Follow)](https://github.com/jamen)
 
-[package]: https://npmjs.org/package/typling-ast
+[package]: https://npmjs.org/package/typling
