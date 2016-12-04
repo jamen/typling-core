@@ -21,10 +21,10 @@ var report = typling.verify(node, types)
 Takes Esprima-style nodes (see [Estree](https://github.com/estree/estree)) and can do 3 things of your choosing:
 
  - `create`: Parses typlings (e.g. `// String -> String`) into array of types that optionally point back to the nodes.
- - `verify`: Verify some types (probably from `create`) against a node tree, returning an array of errors to handle.
+ - `verify`: Verify typlings (probably from `create`) against a tree of nodes, returning an array of errors if any.
  - `check`: A type checking function for nodes. Shortcut for `create` then `verify` on the same node.  
 
-**Notice:** Requires comments to be attached to the nodes with `attachComment: true` or similar
+**Notice:** Typling requires comments to be attached to the nodes with Esprima's `attachComment` option (or similar in others)
 
 ## Installation
 
@@ -34,9 +34,9 @@ $ npm install --save typling-core
 
 ## Usage
 
-### `typling.check(node, [types])`
+### `typling.check(node, [typlings])`
 
-Check tree of nodes for types then type errors.  Returns an array of `TypeError`, otherwise empty.
+Check tree of nodes for typlings then type errors.  Returns an array of `TypeError`.
 
 ```js
 var node = esprima.parse(`
@@ -48,21 +48,29 @@ typling.check(node)
 // [ { [TypeError: 2nd parameter String should be Number] ... } ]
 ```
 
-Optionally add some additional types with the second parameter.
+Optionally add some typlings to the ones parsed with a second parameter.
 
 ### `typling.create(node)`
 
-Create an array of types from a tree of Esprima-style nodes.  These types have a `.target` property pointing to the node they come from.
+Create an array of typlings from a tree of nodes.
 
 ```js
 var types = typling.create(node)
-// [ [['Number'], 'Number', target: FunctionDeclaration { ... }]
-//   [['String', 'Number'], 'String'], target: ProgramModule { ... }]
+// [ [['Number'], 'Number', FunctionDeclaration { ... }]
+//   [['String', 'Number'], 'String'], ProgramModule { ... }]
 ```
 
-### `typling.verify(types, node)`
+Typlings come in the form:
 
-Verify calls in node tree against types.
+```
+[paramTypes, returnType, node?]
+```
+
+With `node` be the node it originates from, or `undefined`/`null`.
+
+### `typling.verify(node, typlings)`
+
+Verify typlings against a tree of nodes.  Note that this doesn't analyze typlings out of the tree.
 
 ```js
 typling.verify(types, node)
@@ -73,12 +81,11 @@ typling.verify(types, node)
 
 ### `typling.util`
 
-Small functions for handling Esprima-style ASTs and our `types` array.  You can read [their source](lib/util) to find out more
+Functions for handling the `typlings` array.  You can read [their source](lib/util) to find out more
 
- - `util.error`: Create friendly, location-aware errors in short ways
- - `util.infer`: Attempt to infer a node's type, optionally give some signatures
- - `util.walk`: Takes various types of nodes, and appends their children into an array
- - `util.query`: Map nodes to types
+ - `util.error`: Creating descriptive errors that reference back to a node.
+ - `util.infer`: Try to infer a nodes type. (Typlings not required to infer all nodes, but help)
+ - `util.query`: Query `typlings` for a typling, given a node to search with.
 
 ## License
 
