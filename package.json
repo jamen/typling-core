@@ -27,14 +27,16 @@
     "static",
     "type",
     "analysis",
-    "jamen",
+    "jamen"
   ],
   "devDependencies": {
     "esprima": "^3.1.2",
     "tape": "^4.6.3"
   },
   "dependencies": {
+    "doctrine": "^2.0.0",
+    "estree-walk": "^0.2.2",
     "ordinal-numbers": "^1.0.1",
-    "typling-signature": "0.0.0"
+    "typling-signature": "^0.1.0"
   }
 }
