@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "doctrine": "^2.0.0",
+    "estree-ancestors": "^0.1.0",
     "estree-walk": "^0.2.2",
     "ordinal-numbers": "^1.0.1",
     "typling-signature": "^0.1.0"

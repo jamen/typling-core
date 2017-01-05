@@ -34,58 +34,57 @@ $ npm install --save typling-core
 
 ## Usage
 
-### `typling.check(node, [typlings])`
+### `typling.check(node, [options])`
 
-Check tree of nodes for typlings then type errors.  Returns an array of `TypeError`.
+Type check the node, and return a context object with all the results.
 
-```js
-var node = esprima.parse(`
-  // Number, Number -> Number
-  function foo (x, y) { return x + y }
-  foo(1, 'two')`)
-
-typling.check(node)
-// [ { [TypeError: 2nd parameter String should be Number] ... } ]
-```
-
-Optionally add some typlings to the ones parsed with a second parameter.
-
-### `typling.create(node)`
-
-Create an array of typlings from a tree of nodes.
+- `node` ([estree `Node`](https://github.com/estree/estree/blob/master/es5.md#node-objects)): A Node created from any ESTree-compatible parser
+- `options` (`Object`): Optional object for creating context
+- `options.definitions` (`Object`): An object mapping type names (e.g. `String`, `Number`) to a type definition. Has [built-in definitions](lib/defs/)
+- `options.typlings` (`Array`): Preloading typlings.  Typlings from the node are added in.
 
 ```js
-var types = typling.create(node)
-// [ [['Number'], 'Number', FunctionDeclaration { ... }]
-//   [['String', 'Number'], 'String'], ProgramModule { ... }]
+// Create context and generate reports:
+var result = typling.check(node)
+
+// Result is context object:
+console.log(result.report)
+console.log(result.source)
 ```
 
-Typlings come in the form:
+This is `typling.create` and `typling.verify` turned into one step if you want simple type checker.
 
-```
-[paramTypes, returnType, node?]
-```
+### `typling.create(node, [options])`
 
-With `node` be the node it originates from, or `undefined`/`null`.
-
-### `typling.verify(node, typlings)`
-
-Verify typlings against a tree of nodes.  Note that this doesn't analyze typlings out of the tree.
+Create a context object.  Contains `definitions`, `typlings`, `source`, `report`.  Same options as `typling.check`
 
 ```js
-typling.verify(types, node)
-// [ TypeError { ... },
-//   TypeError { ... },
-//   TypeError { ... } ]
+// Create context (generates typlings):
+var context = typling.create(node)
+
+// Has necessary props, with no report
+console.log(context.typlings)
+console.log(context.definitions)
+// ...
 ```
 
-### `typling.util`
+**Note:** `report` will be empty until you use `typling.verify` or use `typling.check` instead.
 
-Functions for handling the `typlings` array.  You can read [their source](lib/util) to find out more
+### `typling.verify(context)`
 
- - `util.error`: Creating descriptive errors that reference back to a node.
- - `util.infer`: Try to infer a nodes type. (Typlings not required to infer all nodes, but help)
- - `util.query`: Query `typlings` for a typling, given a node to search with.
+Verify a context from `typling.create`. Creates objects on `report`, otherwise empty.
+
+```js
+// Create context, and cache typligns
+var context = typling.create(node)
+var typlings = context.typlings
+
+// Verify context
+typling.verify(context)
+
+// Log any reports:
+console.log(context.reports)
+```
 
 ## License
 
