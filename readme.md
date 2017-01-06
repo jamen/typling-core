@@ -1,30 +1,37 @@
 # typling-core
 
-> Create and verify typlings on Esprima-style nodes
+> Check typlings on Esprima-style AST
+
+This is for using typling as a module.  See [`typling`](https://github.com/jamen/typling) for using as a tool.
 
 ```js
 var esprima = require('esprima')
 var typling = require('typling-core')
 
-var node = esprima.parse(
-  `// Number, Number -> Number
-   function foo (x, y) { return x + y }
+var source = esprima.parse(
+  `//@ Number, Number -> Number
+   function foo (x, y) {
+     return x + y
+   }
+
    foo(123, 'hello world')`,
-   { attachComment: true }
+   { attachComment: true, loc: true }
  )
 
-var types = typling.create(node)
-var report = typling.verify(node, types)
-// [ TypeError { ... } ]
+var result = typling.check(source)
+
+console.log(result.report)
+console.log(result.source)
+// ...
 ```
 
-Takes Esprima-style nodes (see [Estree](https://github.com/estree/estree)) and can do 3 things of your choosing:
+There are 3 functions you can use with `typling`:
 
- - `create`: Parses typlings (e.g. `// String -> String`) into array of types that optionally point back to the nodes.
- - `verify`: Verify typlings (probably from `create`) against a tree of nodes, returning an array of errors if any.
- - `check`: A type checking function for nodes. Shortcut for `create` then `verify` on the same node.  
+ - `check(source, options?)`: Create context and generate reports. (`create` and `verify` combined)
+ - `create(source, options?)`: Create context with typlings, definitions, source, and no reports.
+ - `verify(context)`: Generate reports on the context.
 
-**Notice:** Typling requires comments to be attached to the nodes with Esprima's `attachComment` option (or similar in others)
+**Notice:** Nodes must have comments attached, and optionally locations for line/column in reports.  Use `{ attachComment: true, loc: true }` with `esprima`, or similar in others.
 
 ## Installation
 
@@ -34,12 +41,12 @@ $ npm install --save typling-core
 
 ## Usage
 
-### `typling.check(node, [options])`
+### `typling.check(source, options?)`
 
 Type check the node, and return a context object with all the results.
 
-- `node` ([estree `Node`](https://github.com/estree/estree/blob/master/es5.md#node-objects)): A Node created from any ESTree-compatible parser
-- `options` (`Object`): Optional object for creating context
+- `source` ([estree `Node`](https://github.com/estree/estree/blob/master/es5.md#node-objects)): A Node (preferably [`Program`](https://github.com/estree/estree/blob/master/es5.md#programs)) created from any ESTree-compatible parser.
+- `options` (`Object`): Options object for creating context.  Optional.
 - `options.definitions` (`Object`): An object mapping type names (e.g. `String`, `Number`) to a type definition. Has [built-in definitions](lib/defs/)
 - `options.typlings` (`Array`): Preloading typlings.  Typlings from the node are added in.
 
@@ -54,7 +61,7 @@ console.log(result.source)
 
 This is `typling.create` and `typling.verify` turned into one step if you want simple type checker.
 
-### `typling.create(node, [options])`
+### `typling.create(source, options?)`
 
 Create a context object.  Contains `definitions`, `typlings`, `source`, `report`.  Same options as `typling.check`
 

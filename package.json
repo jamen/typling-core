@@ -1,6 +1,6 @@
 {
   "name": "typling-core",
-  "description": "Create and verify typlings on Esprima-style nodes",
+  "description": "Check typlings on Esprima-style AST",
   "version": "0.1.2",
   "homepage": "https://github.com/jamen/typling-core",
   "author": "Jamen Marz (https://git.io/jamen)",
@@ -37,7 +37,6 @@
     "doctrine": "^2.0.0",
     "estree-ancestors": "^0.1.0",
     "estree-walk": "^0.2.2",
-    "ordinal-numbers": "^1.0.1",
-    "typling-signature": "^0.1.0"
+    "ordinal-numbers": "^1.0.1"
   }
 }
