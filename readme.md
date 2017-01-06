@@ -93,6 +93,21 @@ typling.verify(context)
 console.log(context.reports)
 ```
 
+### `typling.signature(signature, [associate])`
+
+Parse a strip into a signature.  `null` is turned into `*`.  The optional `associate` parameter is a node or string.
+
+```js
+typling.signature('Number, Number -> String')
+// => [['Number', 'Number'], 'Number']
+
+typling.signature('Number, *, String -> *')
+// => [['Number', null, 'String'], null]
+
+typling.signature('String -> String', { foo: 123 })
+// => [['String'], 'String', { foo: 123 }]
+```
+
 ## License
 
 MIT © [Jamen Marz](https://git.io/jamen)
